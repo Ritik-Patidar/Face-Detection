@@ -2,18 +2,16 @@ import cv2
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-img = cv2.imread("sample.jpg")
+img = cv2.imread("sample 1.jpg")
 gray_img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
-faces = face_cascade.detectMultiScale(gray_img,scaleFactor = 1.1,minNeighbors = 5)
+faces = face_cascade.detectMultiScale(gray_img,scaleFactor = 1.05,minNeighbors = 15)
 
 for x, y, w, h in faces :
     img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),3)  #(0->blue,255->green,0->red),3->width of rectangle
 
-#print(faces)
-
 if img.shape[1] and img.shape[0] > 500 :    #For resizing bigger images 
-    resized = cv2.resize(img,(int(img.shape[1]/3),int(img.shape[0]/3))) 
+    resized = cv2.resize(img,(int(img.shape[1]/5),int(img.shape[0]/5))) 
     cv2.imshow("Gray",resized)
 else:
     cv2.imshow("Gray",img)
